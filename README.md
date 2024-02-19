@@ -64,6 +64,7 @@ web-api-68fdcf9f75-867tl               1/1     Running   0          155m
 
 </aside>
 
+###
 1) Create test1 namespace & Label it. 
 
 ```yaml
