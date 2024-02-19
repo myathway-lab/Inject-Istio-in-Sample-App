@@ -96,4 +96,18 @@ sleep-7d9ff98856-sqhpt                2/2     Running   0          63s
 web-api-68fdcf9f75-jfp2r              2/2     Running   0          63s
 ```
 
-Now we can see the sidecar proxy was automatically added inside each pod in the test1 namespace.
+Now we can see the Istio envoy proxy container was injected inside each pod in the test1 namespace.
+```yaml
+....
+image: docker.io/istio/proxyv2:1.18.2
+    imagePullPolicy: IfNotPresent
+    name: istio-init
+    resources:
+      limits:
+        cpu: "2"
+        memory: 1Gi
+      requests:
+        cpu: 10m
+        memory: 40Mi
+....
+```
