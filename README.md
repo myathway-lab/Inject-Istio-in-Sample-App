@@ -1,5 +1,5 @@
 ## Enable Istio Injection 
-
+## 
 1) Install Istio using demo profile.
 
 ```yaml
@@ -57,6 +57,7 @@ recommendation-6d5786d695-k6jzq        1/1     Running   0          155m
 sleep-7d9ff98856-c78pn                 1/1     Running   0          155m
 web-api-68fdcf9f75-867tl               1/1     Running   0          155m
 ```
+## 
 
 <aside>
 💡 Now we will enable the Istio injection before we deploy the application.
