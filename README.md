@@ -1,20 +1,23 @@
-# Enable Istio Injection #
+# Install Istio Demo Profile & Enable Istio Injection #
+
+## Summary ## 
+1)  Inject Istio after the deployment 
+2)  Inject Istio before the deployment 
+
 <br>
 
-##Summary## 
-- Inject Istio after the deployment
-- Inject Istio before the deployment
-
+### 1)  Inject Istio after the deployment ###
 <br>
 
-
-1) Install Istio using demo profile.
+### 1.1) Install Istio using demo profile. ###
 
 ```yaml
 vagrant@kindcluster-box:~$ istioctl install --set profile=demo -y
 ```
+<br>
 
-2) Create istio-in-action namespace & deploy Sample App in istio-in-action ns.
+
+### 1.2) Create istio-in-action namespace & deploy Sample App in istio-in-action ns.
 
 ```yaml
 vagrant@kindcluster-box:~$ kubectl create ns istio-in-action
@@ -31,8 +34,9 @@ recommendation-6d5786d695-k6jzq       1/1     Running   0          147m
 sleep-7d9ff98856-c78pn                1/1     Running   0          147m
 web-api-68fdcf9f75-867tl              1/1     Running   0          147m
 ```
+<br>
 
-3) Inject Istio in istio-in-action namespace. 
+### 1.3) Inject Istio in istio-in-action namespace. 
 
 ```yaml
 vagrant@kindcluster-box:~$ kubectl label namespace istio-in-action istio-injection=enabled
@@ -46,15 +50,16 @@ sleep-7d9ff98856-c78pn                1/1     Running   0          147m
 web-api-68fdcf9f75-867tl              1/1     Running   0          147m
 ```
 
+<br>
 
-4) Rollout restart the App deployment.
+### 1.4) Rollout restart the App deployment.
 
 ```yaml
 vagrant@kindcluster-box:~$ kubectl rollout restart deploy purchase-history-v1 -n istio-in-action
 deployment.apps/purchase-history-v1 restarted
 ```
 
-Now, we can see purchase-history pod was injected with envoy proxy. 
+###      Now, we can see purchase-history pod was injected with envoy proxy. 
 
 ```yaml
 vagrant@kindcluster-box:~$ kubectl get po -n istio-in-action
@@ -66,13 +71,14 @@ web-api-68fdcf9f75-867tl               1/1     Running   0          155m
 ```
 ## 
 
-<aside>
-💡 Now we will enable the Istio injection before we deploy the application.
+<br>
 
-</aside>
 
-###
-1) Create test1 namespace & Label it. 
+### 2)  Inject Istio before the deployment ###
+<br>
+
+
+### 2.1) Create test1 namespace & Inject Istio as below. 
 
 ```yaml
 vagrant@kindcluster-box:~$ kubectl create ns test1
@@ -91,7 +97,7 @@ metallb-system       Active   8d      kubernetes.io/metadata.name=metallb-system
 **test1                Active   3h11m   istio-injection=enabled,kubernetes.io/metadata.name=test1**
 ```
 
-2) Deploy Sample App in test1 namespace.
+### 2.2) Deploy Sample App in test1 namespace.
 
 ```yaml
 vagrant@kindcluster-box:~/hellocloud-native-box/istio-cop/1-start-istio/sample-apps$ kubectl apply -f . -n test1
@@ -103,7 +109,7 @@ sleep-7d9ff98856-sqhpt                2/2     Running   0          63s
 web-api-68fdcf9f75-jfp2r              2/2     Running   0          63s
 ```
 
-Now we can see the Istio envoy proxy container was injected inside each pod in the test1 namespace.
+### Now we can see the Istio envoy proxy container was injected inside each pod in the test1 namespace.
 ```yaml
 ....
 image: docker.io/istio/proxyv2:1.18.2
