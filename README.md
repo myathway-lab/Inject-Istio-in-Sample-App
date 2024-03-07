@@ -1,5 +1,13 @@
-## Enable Istio Injection 
-## 
+# Enable Istio Injection #
+<br>
+
+##Summary## 
+- Inject Istio after the deployment
+- Inject Istio before the deployment
+
+<br>
+
+
 1) Install Istio using demo profile.
 
 ```yaml
@@ -38,7 +46,6 @@ sleep-7d9ff98856-c78pn                1/1     Running   0          147m
 web-api-68fdcf9f75-867tl              1/1     Running   0          147m
 ```
 
-After the ns was labeled with istio injection, we still cannot see the sidecar container was not able to inject.
 
 4) Rollout restart the App deployment.
 
