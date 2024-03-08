@@ -1,7 +1,7 @@
 # Install Istio Demo Profile & Enable Istio Injection #
 
 ## Summary ## 
-1)  Inject Istio after the deployment 
+1)  Install Istion & Inject Istio after the deployment 
 2)  Inject Istio before the deployment 
 
 <br>
@@ -124,3 +124,27 @@ image: docker.io/istio/proxyv2:1.18.2
         memory: 40Mi
 ....
 ```
+
+<br>
+
+Injecting Istio sidecar proxies will bring benefits of Traffic Management, Security, and Observability. <br> 
+
+But we might need to consider about increseased resources, deployment complexity and application compatibility issues. 
+
+<br>
+
+To explore more about istio security authentication policy to enable mTLS for all namespace-wide and workloads, please refer below.
+
+<li class="masthead__menu-item">
+<a href="https://github.com/myathway-lab/Istio-Peer-Authentication">Istio-Peer-Authentication</a>
+</li>
+
+<br>
+
+To explore how to expose a service outside of the mesh using Istio gateway, please refer below. 
+<li class="masthead__menu-item">
+<a href="https://github.com/myathway-lab/Istio-IngressGateway">Istio-IngressGateway</a>
+</li>
+
+
+
